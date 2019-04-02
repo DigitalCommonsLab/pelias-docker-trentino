@@ -60,6 +60,19 @@
         "trento.csv"
       ]
     },
+    "transit": {
+      "datapath": "/data/transit",
+      "feeds": [
+        {
+          "layerId": "stops",
+          "url": "http://www.ttesercizio.it/opendata/google_transit_urbano_tte.zip",
+          "filename": "stops.txt",
+          "agencyId": "tte",
+          "agencyName": "trentino trasporti esercizio",
+          "layerName": "Stop"
+        }
+       ]
+      },
     "polyline": {
       "datapath": "/data/polylines",
       "files": [
