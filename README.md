@@ -1,3 +1,5 @@
+## moved here: https://github.com/DigitalCommonsLab/docker/tree/master/projects/italy-trentino
+
 # pelias-docker-trentino
 
 data dir structure, after command: *pelias download all*
