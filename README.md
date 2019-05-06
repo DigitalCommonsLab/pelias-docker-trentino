@@ -1,4 +1,5 @@
-## moved here: https://github.com/DigitalCommonsLab/docker/tree/master/projects/italy-trentino
+This contains only raw data sources the ** Pelias configuration is moved here:*
+https://github.com/DigitalCommonsLab/docker/tree/master/projects/italy-trentino
 
 # pelias-docker-trentino
 
