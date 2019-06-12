@@ -7,6 +7,21 @@
 
 # Scripts
 
+*setup.sh*
+install tool indispensabili per download e trasformazione dati
+
+*download.conf*
+lista file remoti da scaricare
+
+*download.sh*
+scarica tutte le datasource ed estrae file compressi
+
+*prepare.sh*
+trasformazione e conversione dei dati scaricati in formato importabile in pelias
+
+
+# Altri Scripts
+
 *shp2csv.sh*
 converte shape file scaricati dal comune in un file CSV con due colonne:
 ```name, geom```
@@ -23,11 +38,5 @@ converte il file csv di cui sopra in formato .polyline importabile in Pelias **.
 trento_civici_con_nomi_strade.csv
 **lat,lon,number,alfa,zipcode,street**
 
-
-# Setup
-
-```
-npm install
-```
 
 ![Image](images/test_osm_comune.png)
