@@ -1,9 +1,16 @@
 
-## Scripts e Immagini Docker per l'elaborazione di dati da importare in [Pelias](https://github.com/pelias)
+## Pelias Trentino
+
+Scripts e Immagini Docker per l'elaborazione di opendata del Trentino da importare in [Pelias](https://github.com/pelias)
+
+# Dati
 
 * Civici comune di Trento
-* Civici OpenStreetMap
+* Nomi strade comune di Trento
 * Rete stradale e nomi di vie del comune di Trento
+* Civici comune di Rovereto
+* Nomi strade comune di Rovereto
+* Civici OpenStreetMap
 
 # Utilizzo
 
