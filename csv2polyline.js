@@ -8,8 +8,8 @@ var polyline = require('polyline');
 
 //	https://github.com/pelias/csv-importer/blob/0f1ffa85730bfe644690db39501f3ec0a0e404d6/lib/streams/recordStream.js
 
-const columnGeom = 'WKT';
-const columnName = 'fumetto';
+const columnGeom = 'geom';
+const columnName = 'street';
 
 function processRecord(row) {
 

@@ -16,3 +16,5 @@ unzip -d "${TMP}TRENTO_CIVICI_SHP" "${TMP}TRENTO_CIVICI_SHP.zip"
 unzip -d "${TMP}TRENTO_STRADE_SHP" "${TMP}TRENTO_STRADE_SHP.zip"
 
 mv "${TMP}TRENTO_STRADE_NOMI.csv" "${TMP}trento_strade_nomi.csv"
+
+rm -fr "${TMP}TRENTO_CIVICI_SHP.zip" "${TMP}TRENTO_STRADE_SHP.zip"
