@@ -12,7 +12,10 @@
 ./download.sh
 ./prepare.sh
 ```
+
+# Directories
 */data* contiene dati importabili in Pelias
+*/tmp* contiene dati temporanei scaricati e di pre-processamento
 
 # Scripts
 
@@ -32,11 +35,7 @@ trasformazione e conversione dei dati scaricati in formato importabile in pelias
 # Altri Scripts
 
 **csv2polyline.js**
-converte il file csv di cui sopra in formato .polyline importabile come road network in Pelias **.0sv**
-
-
-**trento_civici_con_nomi_strade.csv**
-```lat,lon,number,alfa,zipcode,street```
+converte i file csv in formato .polyline importabile come road network in Pelias **.0sv**
 
 # Utility 
 plugin qgis per scaricare parti di openstreetmap per debug:
