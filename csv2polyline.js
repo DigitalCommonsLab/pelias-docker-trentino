@@ -8,11 +8,12 @@ var polyline = require('polyline');
 
 //	https://github.com/pelias/csv-importer/blob/0f1ffa85730bfe644690db39501f3ec0a0e404d6/lib/streams/recordStream.js
 
-function processRecord(row, next_uid, stats) {
- 
- //	console.log('processRecord',row);
-    
-    let geom = row.geom.match(/LINESTRING \((.*)\)/);
+const columnGeom = 'WKT';
+const columnName = 'fumetto';
+
+function processRecord(row) {
+
+    let geom = row[ columnGeom ].match(/LINESTRING \((.*)\)/);
     
     //console.log(geom[1]);
 
@@ -20,14 +21,15 @@ function processRecord(row, next_uid, stats) {
       return t.split(' ').map(parseFloat);
     });
     
-    let enc = polyline.encode(coords);
+    let enc = polyline.encode(coords),
+    	name = row[ columnName ];
 
     //console.log('ROW COORDS',coords)
 
-    return enc+"\0"+row.name+"\n";
+    return enc+"\0"+name+"\n";
 }
 
-function createRecordStream( filePath, dirPath ) {
+function createRecordStream( filePath ) {
 
   var csvParser = csv({
     trim: true,
@@ -40,7 +42,7 @@ function createRecordStream( filePath, dirPath ) {
   let uid = 0;
   var docStream = through.obj(
     function write( record, enc, next ){
-      const recDoc = processRecord(record, uid);
+      const recDoc = processRecord(record);
       uid++;
 
       if (recDoc) {
@@ -56,8 +58,10 @@ function createRecordStream( filePath, dirPath ) {
     .pipe( docStream );
 }
 
-if( fs.existsSync(process.argv[2]) ) {
-  createRecordStream(process.argv[2]).pipe(process.stdout);
+const fileIn = process.argv[2];		//csv file input
+
+if( fs.existsSync(fileIn) ) {
+  createRecordStream(fileIn).pipe(process.stdout);
 }
 /*stream.on('data', function(d) {
   process.stdout.write(d);

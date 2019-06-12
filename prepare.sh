@@ -10,19 +10,33 @@ if [ -f $TMPDB ]; then
 fi
 
 #civici
-CSV1="${TMP}trento_civici.csv"
-rm -f $CSV1
-ogr2ogr -f "CSV" -lco GEOMETRY=AS_XY -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV1 "${TMP}TRENTO_CIVICI_SHP/civici_web.shp"
+CSV_CIV="${TMP}trento_civici_geom.csv"
+rm -f $CSV_CIV
+ogr2ogr -f "CSV" -lco GEOMETRY=AS_XY -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_CIV "${TMP}TRENTO_CIVICI_SHP/civici_web.shp"
+##contains columns X,Y as lon,lat
+##quoteall
+mv $CSV_CIV "$CSV_CIV.tmp"
+csvformat -U 1 "$CSV_CIV.tmp" > $CSV_CIV
+rm -f "$CSV_CIV.tmp"
 
 #strade geometrie
 CSV_STRADE="${TMP}trento_strade_geom.csv"
 rm -f $CSV_STRADE
 ogr2ogr -f "CSV" -lco GEOMETRY=AS_WKT -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_STRADE "${TMP}TRENTO_STRADE_SHP/grafo_web.shp"
-##linestring WKT
+##contains column "WKT" as a WKT LineString
+#quoteall
+mv $CSV_STRADE "$CSV_STRADE.tmp"
+csvformat -U 1 "$CSV_STRADE.tmp" > $CSV_STRADE
+rm -f "$CSV_STRADE.tmp"
 
-CSV_NOMI="${TMP}trento_strade_nomi.csv"
-##quoteall
-csvformat -U 1 "${TMP}TRENTO_STRADE_NOMI.csv" > $CSV_NOMI
+
+#convert to utf8
+echo "convert to utf8..."
+mv "${TMP}TRENTO_STRADE_NOMI.csv" "${TMP}TRENTO_STRADE_NOMI.win.csv"
+iconv -f WINDOWS-1252 -t UTF-8//TRANSLIT "${TMP}TRENTO_STRADE_NOMI.win.csv" -o "${TMP}TRENTO_STRADE_NOMI.utf.csv"
+#quoteall
+csvformat -U 1 "${TMP}TRENTO_STRADE_NOMI.utf.csv" > "${TMP}TRENTO_STRADE_NOMI.csv"
+
 
 
 #
@@ -41,4 +55,5 @@ csvformat -U 1 "${TMP}TRENTO_STRADE_NOMI.csv" > $CSV_NOMI
 
 
 #generate pelias polyline
-node csv2polyline.js $CSV_STRADE > "${DATA}trento_strade.0sv"
+echo "generate polyline file..."
+node csv2polyline.js $CSV_STRADE > "${DATA}trento_strade_polyline.0sv"
