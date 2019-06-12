@@ -12,7 +12,7 @@ function processRecord(row, next_uid, stats) {
  
  //	console.log('processRecord',row);
     
-    let geom = row.geom.match(/LINESTRING\((.*)\)/);
+    let geom = row.geom.match(/LINESTRING \((.*)\)/);
     
     //console.log(geom[1]);
 

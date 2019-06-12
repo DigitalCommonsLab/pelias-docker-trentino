@@ -5,6 +5,16 @@
 * Civici OpenStreetMap
 * Rete stradale e nomi di vie del comune di Trento
 
+# Utilizzo
+
+```
+./setup.sh
+./download.sh
+./prepare.sh
+```
+*/data* contiene dati importabili in Pelias
+
+
 # Scripts
 
 **setup.sh**
