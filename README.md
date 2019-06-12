@@ -38,5 +38,8 @@ converte il file csv di cui sopra in formato .polyline importabile in Pelias **.
 trento_civici_con_nomi_strade.csv
 **lat,lon,number,alfa,zipcode,street**
 
+# Utility 
+plugin qgis per scaricare parti di openstreetmap per debug:
+https://github.com/lcoandrade/OSMDownloader
 
 ![Image](images/test_osm_comune.png)
