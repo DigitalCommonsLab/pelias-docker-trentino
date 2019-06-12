@@ -25,15 +25,16 @@ trasformazione e conversione dei dati scaricati in formato importabile in pelias
 *shp2csv.sh*
 converte shape file scaricati dal comune in un file CSV con due colonne:
 ```name, geom```
-
-*join-civici-nomistrade.sh*
-associa il nome della strada ad ogni civico con il *codice strada* prendendolo dal file csv
-
 geom contiene la definizione della geometria in WKT:
 ```LINESTRING([ [lat1,lon1],[lat2,lon2], ...])```
 
 *csv2polyline.js*
-converte il file csv di cui sopra in formato .polyline importabile in Pelias **.0sv**
+converte il file csv di cui sopra in formato .polyline importabile come road network in Pelias **.0sv**
+
+*join-civici-nomistrade.sh*
+associa il nome della strada ad ogni civico con il *codice strada* prendendolo dal file csv
+
+
 
 trento_civici_con_nomi_strade.csv
 **lat,lon,number,alfa,zipcode,street**
