@@ -57,6 +57,8 @@ csvformat -U 1 $CSV_STRADE > $CSV_POLY
 node csv2polyline.js $CSV_POLY > "${DATA}trento_strade_polyline.0sv"
 rm -f $CSV_POLY
 
+#rm -f $TMPDB
+
 
 #spatialite_tool -e -d $1 -t shape -g geom -k -type LINESTRING
 #TODO import nomi giusti da csv spatialite_tool -i -shp $1 -d $1.sqlite -t shape -s 4326 -g geom -c UTF-8
