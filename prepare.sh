@@ -2,15 +2,17 @@
 #
 TMP="./tmp/"
 TMPDB="${TMP}db.sqlite"
-DATA="./data/"
+DATA="./data/openaddresses/"
+DATA2="./data/polylines/"
 
 CSV_CIV="${TMP}trento_civici.csv"
+CSV_CIV2="${TMP}rovereto_civici.csv"
 CSV_STRADE="${TMP}trento_strade.csv"
 CSV_NOMI="${TMP}trento_strade_nomi.csv"
 
-rm -f $TMPDB "${DATA}.*"
+rm -f $TMPDB "${DATA}.*" "${DATA2}.*"
 
-#civici
+#trento civici
 rm -f $CSV_CIV
 ogr2ogr -f "CSV" -lco GEOMETRY=AS_XY -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_CIV "${TMP}TRENTO_CIVICI_SHP/civici_web.shp"
 ##contains columns X,Y as lon,lat
@@ -18,18 +20,29 @@ ogr2ogr -f "CSV" -lco GEOMETRY=AS_XY -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_CIV 
 mv $CSV_CIV "$CSV_CIV.tmp"
 csvformat -U 1 "$CSV_CIV.tmp" > $CSV_CIV
 #TODO ottimizzazione csvcut -c "X,Y,civico_alf,cap,strada,fumetto" $CSV_CIV > cut.csv
-rm -fr "$CSV_CIV.tmp" "${TMP}TRENTO_CIVICI_SHP"
+rm -fr "$CSV_CIV.tmp"
 
-#strade geometrie
+#rovereto civici
+rm -f $CSV_CIV2
+ogr2ogr -f "CSV" -lco GEOMETRY=AS_WKT -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_CIV2 "${TMP}ROVERETO_CIVICI_SHP/Civici.shp"
+##contains columns X,Y as lon,lat
+##quoteall
+mv $CSV_CIV2 "$CSV_CIV2.tmp"
+csvformat -U 1 "$CSV_CIV2.tmp" > $CSV_CIV2
+#TODO ottimizzazione csvcut -c "X,Y,civico_alf,cap,strada,fumetto" $CSV_CIV2 > cut.csv
+rm -fr "$CSV_CIV2.tmp"
+
+
+#trento strade geometrie
 rm -f $CSV_STRADE
 ogr2ogr -f "CSV" -lco GEOMETRY=AS_WKT -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_STRADE "${TMP}TRENTO_STRADE_SHP/grafo_web.shp"
 ##contains column "WKT" as a WKT LineString
 #quoteall
 mv $CSV_STRADE "$CSV_STRADE.tmp"
 csvformat -U 1 "$CSV_STRADE.tmp" > $CSV_STRADE
-rm -fr "$CSV_STRADE.tmp" "${TMP}TRENTO_STRADE_SHP"
+rm -fr "$CSV_STRADE.tmp"
 
-#strade nomi
+#trento strade nomi
 echo "convert to utf8..."
 mv $CSV_NOMI "${TMP}TRENTO_STRADE_NOMI.win.csv"
 iconv -f WINDOWS-1252 -t UTF-8//TRANSLIT "${TMP}TRENTO_STRADE_NOMI.win.csv" -o "${TMP}TRENTO_STRADE_NOMI.utf.csv"
@@ -50,11 +63,11 @@ echo -e ".header on\n.mode csv\n${SQL1}" | spatialite $TMPDB > $CSV_CIV
 csvformat -U 1 $CSV_CIV > "${DATA}trento_civici.csv"
 rm -f $CSV_CIV
 
-SQL2="SELECT WKT AS geom, Appellativo||' '||Prenome||' '||Denominazione AS street FROM trento_strade,trento_strade_nomi WHERE trento_strade.codice = trento_strade_nomi.'Codice via';"
+SQL2="SELECT WKT, Appellativo||' '||Prenome||' '||Denominazione AS street FROM trento_strade,trento_strade_nomi WHERE trento_strade.codice = trento_strade_nomi.'Codice via';"
 echo -e ".header on\n.mode csv\n${SQL2}" | spatialite $TMPDB > $CSV_STRADE
 CSV_POLY="${TMP}trento_strade_polyline.csv"
 csvformat -U 1 $CSV_STRADE > $CSV_POLY
-node csv2polyline.js $CSV_POLY > "${DATA}trento_strade_polyline.0sv"
+node csv2polyline.js $CSV_POLY > "${DATA2}trento_strade_polyline.0sv"
 rm -f $CSV_POLY
 
 #rm -f $TMPDB

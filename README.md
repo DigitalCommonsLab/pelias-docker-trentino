@@ -6,11 +6,12 @@ Scripts e Immagini Docker per l'elaborazione di opendata del Trentino da importa
 # Dati
 
 * Civici comune di Trento
-* Nomi strade comune di Trento
 * Rete stradale e nomi di vie del comune di Trento
 * Civici comune di Rovereto
-* Nomi strade comune di Rovereto
+* Rete stradale comune di Rovereto
 * Civici OpenStreetMap
+* Rete stradale e nomi di vie OpenStreetMap
+* PDI OpenStreetMap
 
 # Utilizzo
 
@@ -40,6 +41,9 @@ associa il nome della strada ad ogni civico con il *codice strada* prendendolo d
 trasformazione e conversione dei dati scaricati in formato importabile in pelias
 
 # Altri Scripts
+
+**csvWktGeom2LatLon.js**
+converte file csv con colonna geometria in format WKT in csv con colonne lat,lon (da centroide)
 
 **csv2polyline.js**
 converte i file csv in formato .polyline importabile come road network in Pelias **.0sv**
