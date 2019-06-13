@@ -45,7 +45,9 @@ trasformazione e conversione dei dati scaricati in formato importabile in pelias
 converte i file csv in formato .polyline importabile come road network in Pelias **.0sv**
 
 # Utility 
-plugin qgis per scaricare parti di openstreetmap per debug:
-https://github.com/lcoandrade/OSMDownloader
+
+* https://github.com/lcoandrade/OSMDownloader
+  plugin qgis per scaricare parti di openstreetmap per debug:
+* https://wiki.openstreetmap.org/wiki/Pbftoosm
 
 ![Image](images/test_osm_comune.png)
