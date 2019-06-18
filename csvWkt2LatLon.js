@@ -16,7 +16,7 @@ function centroid(geom) {
 	var ll, cen;
 
 	if(geom.type==="Point") {
-		ll = geom.coordinates
+		ll = geom.coordinates;
 	}
 	else if(geom.type==="MultiPoint") {
 		ll = geom.coordinates[0];
@@ -59,7 +59,9 @@ function processRecord(row) {
     let geom =  wkx.Geometry.parse(wkt);
 
     let geoj = geom.toGeoJSON();
-    console.log(geoj)
+    
+    console.log(geoj);
+
     let point = centroid(geoj);
 
     console.log(point);
