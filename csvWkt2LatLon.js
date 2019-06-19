@@ -1,15 +1,18 @@
-var fs = require('fs');
-var path = require('path');
-var _ = require('lodash');
-var csvParse = require('csv-parse');
-var csvGenerate = require('csv-generate')
+const fs = require('fs');
+const path = require('path');
+const _ = require('lodash');
 
-var through = require('through2');
-var wkx = require('wkx');
-var geoUtils = require('geojson-utils');
+const csvParse = require('csv-parse');
+const csvWrite = require('csv-write-stream');
+
+const through = require('through2');
+const wkx = require('wkx');
+const geoUtils = require('geojson-utils');
 //	https://github.com/pelias/csv-importer/blob/0f1ffa85730bfe644690db39501f3ec0a0e404d6/lib/streams/recordStream.js
 
 const columnGeom = 'WKT';
+const columnLat = 'LAT';
+const columnLon = 'LON';
 
 function centroid(geom) {
 	
@@ -60,25 +63,23 @@ function processRecord(row) {
 
     let geoj = geom.toGeoJSON();
     
-    console.log(geoj);
+    //console.log(geoj);
 
     let point = centroid(geoj);
 
-    console.log(point);
+    //console.log(point);
 
 	delete row[ columnGeom ];
 
-	row['lat'] = point.lat;
-	row['lon'] = point.lon;
+	row[ columnLat ] = point.lat;
+	row[ columnLon ] = point.lon;
 
-    //console.log('ROW COORDS',coords)
-
-    return _.values(row).join(',')+"\n";
+    return row;
 }
 
-function createRecordStream( filePath ) {
+function createRecordStream(fileIn) {
 
-	var csvPar = csvGenerate({
+	var csvP = csvParse({
 		trim: true,
 		skip_empty_lines: true,
 		relax_column_count: true,
@@ -86,36 +87,62 @@ function createRecordStream( filePath ) {
 		columns: true
 	});
 
-	var csvGen = csvGenerate({
-		columns: ['lat', 'lon'],
-		length: 2
-	})
-	.pipe(process.stdout)
+	var csvW = csvWrite({
+		separator: ',',
+		newline: "\n",
+		headers: undefined,
+		sendHeaders: true
+	});
 
-  let uid = 0;
-  var docStream = through.obj(
-    function write( record, enc, next ){
-      const recDoc = processRecord(record);
-      uid++;
+	csvW.pipe(process.stdout);
 
-      if (recDoc) {
-        this.push( recDoc );
-      }
+	let obj,head,row,uid=0;
 
-      next();
-    }
-  );
+	var docStream = through.obj(function(record, enc, next ) {
 
-  return fs.createReadStream( filePath )
-    .pipe( csvPar )
-    .pipe( docStream );
+		obj = processRecord(record);
+
+/*		if(uid===0) {
+			head = _.keys(obj).join(',')+"\n";
+			this.push(head);
+		}
+		
+		row = _.values(obj).join(',')+"\n";
+
+		this.push(row);*/
+		
+		csvW.write(obj);
+
+		uid++;
+
+		next();
+	});
+
+	fs.createReadStream(fileIn)
+		.pipe(csvP)
+		.pipe(docStream);
+	
+	//csvW.write({hello: "world", foo: "bar", baz: "taco"})
+	//csvW.end()
+
 }
+
+/*
+const transf = transform(function(record, callback){
+	setTimeout(function() {
+console.log(record)
+		callback(null, );
+
+	}, 500)
+}, {
+  parallel: 5
+})*/
 
 const fileIn = process.argv[2];		//csv file input
 
-if( fs.existsSync(fileIn) ) {
-  createRecordStream(fileIn).pipe(process.stdout);
-}
+if(fs.existsSync(fileIn))
+	createRecordStream(fileIn);
+
 /*stream.on('data', function(d) {
   process.stdout.write(d);
 })

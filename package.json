@@ -9,9 +9,11 @@
   "dependencies": {
     "csv-generate": "^3.2.3",
     "csv-parse": "^4.4.1",
+    "csv-write-stream": "^2.0.0",
     "geojson-utils": "^1.1.0",
     "lodash": "^4.17.11",
     "polyline": "^0.2.0",
+    "stream-transform": "^2.0.1",
     "through2": "^3.0.1",
     "wkx": "^0.4.7"
   }
