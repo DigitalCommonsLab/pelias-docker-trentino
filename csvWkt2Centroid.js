@@ -59,7 +59,7 @@ function processRecord(row) {
 
     let wkt = row[ columnGeom ];
 
-    let geom =  wkx.Geometry.parse(wkt);
+    let geom = wkx.Geometry.parse(wkt);
 
     let geoj = geom.toGeoJSON();
     

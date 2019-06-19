@@ -1,25 +1,23 @@
-var fs = require( 'fs' );
-var path = require( 'path' );
-var _ = require( 'lodash' );
+const fs = require( 'fs' );
+const path = require( 'path' );
+const _ = require( 'lodash' );
 
-var csv = require('csv-parse');
-var through = require('through2');
-var polyline = require('polyline');
-
+const csv = require('csv-parse');
+const through = require('through2');
+const polyline = require('polyline');
+const wkx = require('wkx');
 //	https://github.com/pelias/csv-importer/blob/0f1ffa85730bfe644690db39501f3ec0a0e404d6/lib/streams/recordStream.js
 
-const columnGeom = 'geom';
+const columnGeom = 'WKT';
 const columnName = 'street';
 
 function processRecord(row) {
 
-    let geom = row[ columnGeom ].match(/LINESTRING \((.*)\)/);
-    
-    //console.log(geom[1]);
-
-    let coords = geom[1].split(',').map(function(t) {
-      return t.split(' ').map(parseFloat);
-    });
+    //let geom = row[ columnGeom ].match(/LINESTRING \((.*)\)/);
+    let wkt = row[ columnGeom ];
+    let geom = wkx.Geometry.parse(wkt);
+    let geoj = geom.toGeoJSON();
+    let coords = geoj.coordinates;
     
     let enc = polyline.encode(coords),
     	name = row[ columnName ];
