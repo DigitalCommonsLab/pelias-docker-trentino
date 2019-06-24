@@ -42,8 +42,8 @@ trasformazione e conversione dei dati scaricati in formato importabile in pelias
 
 # Altri Scripts
 
-**csvWktGeom2LatLon.js**
-converte file csv con colonna geometria in format WKT in csv con colonne lat,lon (da centroide)
+**csvWkt2LatLon.js.js**
+converte file csv con colonna geometria in format WKT in csv con colonne lat,lon (da centroide o simile)
 
 **csv2polyline.js**
 converte i file csv in formato .polyline importabile come road network in Pelias **.0sv**
