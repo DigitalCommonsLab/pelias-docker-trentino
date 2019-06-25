@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-TMP="./tmp/"
+TMP="/tmp/"
 TMPDB="${TMP}db.sqlite"
-DATA="./data/openaddresses/"
-DATA2="./data/polylines/"
+DATA="/data/openaddresses/"
+DATA2="/data/polylines/"
 
 CSV_CIV="${TMP}trento_civici.csv"
 CSV_STRADE="${TMP}trento_strade.csv"

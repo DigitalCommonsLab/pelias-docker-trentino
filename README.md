@@ -31,7 +31,7 @@ Scripts e Immagini Docker per l'elaborazione di opendata del Trentino da importa
 install tool indispensabili per download e trasformazione dati
 
 **download.conf**
-lista file remoti da scaricare
+lista file remoti da scaricare, spostare questo file nella repo /docker/projects/italy-trentino
 
 **download.sh**
 scarica tutte le datasource ed estrae file compressi
