@@ -13,9 +13,16 @@ Scripts e Immagini Docker per l'elaborazione di opendata del Trentino da importa
 * Rete stradale e nomi di vie OpenStreetMap
 * PDI OpenStreetMap
 
-# Utilizzo
+
+# Utilizzo via docker
+
+```bash
 
 ```
+
+# Utilizzo via bash
+
+```bash
 ./setup.sh
 ./download.sh
 ./prepare.sh
