@@ -14,12 +14,13 @@ RUN rm -rf /var/lib/apt/lists/*
 ENV WORKDIR /code
 WORKDIR ${WORKDIR}
 
-COPY bin ${WORKDIR}/
-COPY ./package.json ${WORKDIR}
+COPY ./bin ${WORKDIR}/bin
+COPY ./package.json ${WORKDIR}/bin/
 
-RUN npm install
+RUN tree
+RUN npm install --prefix ${WORKDIR}/bin/
 
-RUN ls -l; pwd; printenv
+
 
 # run as the pelias user
 #TODO create user USER pelias
