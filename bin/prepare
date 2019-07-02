@@ -1,12 +1,12 @@
 #!/bin/bash
 #
 
-TMP="/tmp/"
-DATA_DIR="/data"
+TMP="/tmp/trentino/"
+DATA_DIR="/data/"
 
 TMPDB="${TMP}db.sqlite"
-DATA="${DATA_DIR}/openaddresses/"
-DATA2="${DATA_DIR}/polylines/"
+DATA="${DATA_DIR}openaddresses/"
+DATA2="${DATA_DIR}polylines/"
 
 CSV_CIV="${TMP}trento_civici.csv"
 CSV_STRADE="${TMP}trento_strade.csv"

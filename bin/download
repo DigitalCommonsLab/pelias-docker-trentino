@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TMP="/tmp/"
+TMP="/tmp/trentino/"
 DOWN_CONF="/code/download.conf"
 DOWN_LOGS="/code/download.log"
 
@@ -10,6 +10,9 @@ if [ ! -f "${DOWN_CONF}" ]; then
 fi
 if [ ! -f "${DOWN_LOGS}" ]; then
 	DOWN_LOGS="/code/download.log"
+fi
+if [ ! -d "${TMP}" ]; then
+	mkdir -p "${TMP}"
 fi
 
 echo "Download files..."
