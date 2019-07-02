@@ -22,13 +22,9 @@ COPY ./package.json ${WORKDIR}/bin/
 RUN tree
 RUN npm install --prefix ${WORKDIR}/bin/
 
-
-
 RUN useradd -ms /bin/bash pelias
 RUN mkdir /data
 RUN chown pelias:pelias /data /code -R
-
-RUN bash ./bin/prepare
 
 USER pelias
 
