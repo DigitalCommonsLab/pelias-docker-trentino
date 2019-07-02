@@ -6,7 +6,7 @@ DOWN_LOGS="/code/download.log"
 
 
 if [ ! -f "${DOWN_CONF}" ]; then
-	DOWN_CONF="/code/download.default.conf"
+	DOWN_CONF="/code/bin/download.default.conf"
 fi
 if [ ! -f "${DOWN_LOGS}" ]; then
 	DOWN_LOGS="/code/download.log"
