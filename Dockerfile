@@ -22,5 +22,11 @@ RUN npm install --prefix ${WORKDIR}/bin/
 
 
 
+RUN useradd -ms /bin/bash pelias
+RUN mkdir /data
+RUN chown pelias:pelias /data /code -R
+
+USER pelias
+
 # run as the pelias user
 #TODO create user USER pelias
