@@ -16,7 +16,7 @@ echo "Download files..."
 rm -fr "${TMP}*"
 #rm -fr "${TMP}TRENTO_CIVICI_SHP.zip" "${TMP}TRENTO_STRADE_SHP.zip" "${TMP}ROVERETO_CIVICI_SHP.zip" "${TMP}ROVERETO_STRADE_SHP.zip" "${TMP}trento_strade_nomi.csv"
 
-> download.log
+> "${DOWN_LOGS}"
 aria2c -i "${DOWN_CONF}" -d $TMP -l "${DOWN_LOGS}" -x 8 --auto-file-renaming=false -c
 
 #ls -1 $TMP
