@@ -26,8 +26,8 @@ pelias import oa
 
 ```bash
 ./setup.sh
-./download.sh
-./prepare.sh
+./bin/download
+./bin/prepare
 ```
 
 # Directories

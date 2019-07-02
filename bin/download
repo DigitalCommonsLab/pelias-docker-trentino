@@ -6,7 +6,7 @@ if [ ! -z "${DOWN_CONF}" ]; then
 	DOWN_CONF="/code/bin/download.default.conf"
 fi
 if [ ! -z "${DOWN_LOG}" ]; then
-	DOWN_LOG="/code/bin/download.log"
+	DOWN_LOG="/code/download.log"
 fi
 
 echo "Download files..."

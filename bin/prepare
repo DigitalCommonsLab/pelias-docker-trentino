@@ -2,14 +2,21 @@
 #
 TMP="/tmp/"
 TMPDB="${TMP}db.sqlite"
-DATA="/data/openaddresses/"
-DATA2="/data/polylines/"
+DATA="${DATA_DIR}/openaddresses/"
+DATA2="${DATA_DIR}/polylines/"
 
 CSV_CIV="${TMP}trento_civici.csv"
 CSV_STRADE="${TMP}trento_strade.csv"
 CSV_NOMI="${TMP}trento_strade_nomi.csv"
 CSV_CIV2="${TMP}rovereto_civici.csv"
 CSV_STRADE2="${TMP}rovereto_strade.csv"
+
+if [ ! -d "${DATA}" ]; then
+	mkdir -p "${DATA}"
+fi
+if [ ! -d "${DATA2}" ]; then
+	mkdir -p "${DATA2}"
+fi
 
 rm -f $TMPDB "${DATA}.*" "${DATA2}.*"
 
