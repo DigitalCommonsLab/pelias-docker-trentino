@@ -1,6 +1,9 @@
 #!/bin/bash
 #
+
 TMP="/tmp/"
+DATA_DIR="/data"
+
 TMPDB="${TMP}db.sqlite"
 DATA="${DATA_DIR}/openaddresses/"
 DATA2="${DATA_DIR}/polylines/"

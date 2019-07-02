@@ -14,6 +14,8 @@ RUN rm -rf /var/lib/apt/lists/*
 ENV WORKDIR /code
 WORKDIR ${WORKDIR}
 
+#ENV DATA_DIR ${DATA_DIR}
+
 COPY ./bin ${WORKDIR}/bin
 COPY ./package.json ${WORKDIR}/bin/
 
@@ -25,6 +27,8 @@ RUN npm install --prefix ${WORKDIR}/bin/
 RUN useradd -ms /bin/bash pelias
 RUN mkdir /data
 RUN chown pelias:pelias /data /code -R
+
+RUN bash ./bin/prepare
 
 USER pelias
 
