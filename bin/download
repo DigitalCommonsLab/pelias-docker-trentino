@@ -1,12 +1,15 @@
 #!/bin/bash
 
 TMP="/tmp/"
+DOWN_CONF="/code/download.conf"
+DOWN_LOGS="/code/download.log"
 
-if [ ! -z "${DOWN_CONF}" ]; then
-	DOWN_CONF="/code/bin/download.default.conf"
+
+if [ ! -f "${DOWN_CONF}" ]; then
+	DOWN_CONF="/code/download.default.conf"
 fi
-if [ ! -z "${DOWN_LOG}" ]; then
-	DOWN_LOG="/code/download.log"
+if [ ! -f "${DOWN_LOGS}" ]; then
+	DOWN_LOGS="/code/download.log"
 fi
 
 echo "Download files..."
@@ -14,7 +17,7 @@ rm -fr "${TMP}*"
 #rm -fr "${TMP}TRENTO_CIVICI_SHP.zip" "${TMP}TRENTO_STRADE_SHP.zip" "${TMP}ROVERETO_CIVICI_SHP.zip" "${TMP}ROVERETO_STRADE_SHP.zip" "${TMP}trento_strade_nomi.csv"
 
 > download.log
-aria2c -i "${DOWN_CONF}" -d $TMP -l "${DOWN_LOG}" -x 8 --auto-file-renaming=false -c
+aria2c -i "${DOWN_CONF}" -d $TMP -l "${DOWN_LOGS}" -x 8 --auto-file-renaming=false -c
 
 #ls -1 $TMP
 
