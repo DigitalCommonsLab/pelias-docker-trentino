@@ -29,7 +29,16 @@ aria2c -i "${DOWN_CONF}" -d $TMP -l "${DOWN_LOGS}" -x 8 --auto-file-renaming=fal
 unzip -d "${TMP}TRENTO_CIVICI_SHP" "${TMP}TRENTO_CIVICI_SHP.zip"
 unzip -d "${TMP}TRENTO_STRADE_SHP" "${TMP}TRENTO_STRADE_SHP.zip"
 
+#PATCH dati corrotti
+#sed -i -e 's/\xe0//g' "${TMP}TRENTO_STRADE_NOMI.csv" 
+#sed -i -e 's/\x0160//g' "${TMP}TRENTO_STRADE_NOMI.csv" 
+echo "convert to utf8..."
+sed -i -e 's/[\d128-\d255]//g' "${TMP}TRENTO_STRADE_NOMI.csv"
+sed -i -e 's/\x1a//g' "${TMP}TRENTO_STRADE_NOMI.csv"
+sed -i -e 's/\u0160//g' "${TMP}TRENTO_STRADE_NOMI.csv"
+
 mv "${TMP}TRENTO_STRADE_NOMI.csv" "${TMP}trento_strade_nomi.csv"
+iconv -f WINDOWS-1252 -t UTF-8//TRANSLIT "${TMP}trento_strade_nomi.csv" -o "${TMP}trento_strade_nomi.utf.csv"
 
 unzip -d "${TMP}ROVERETO_CIVICI_SHP" "${TMP}ROVERETO_CIVICI_SHP.zip"
 unzip -d "${TMP}ROVERETO_STRADE_SHP" "${TMP}ROVERETO_STRADE_SHP.zip"

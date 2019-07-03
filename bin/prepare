@@ -3,7 +3,7 @@
 
 TMP="/tmp/trentino/"
 DATA_DIR="/data/"
-BIN_DIR="/code/bin/"
+#BIN_DIR="/code/bin/"
 
 TMPDB="${TMP}db.sqlite"
 DATA="${DATA_DIR}openaddresses/"
@@ -62,9 +62,9 @@ rm -fr "$CSV_STRADE2.tmp"
 #TODO csvWkt2LatLon.js
 
 #trento strade nomi
-echo "convert to utf8..."
+#echo "convert to utf8..."
 #mv $CSV_NOMI "${TMP}trento_strade_nomi.win.csv"
-iconv -f WINDOWS-1252 -t UTF-8//TRANSLIT $CSV_NOMI -o "${TMP}trento_strade_nomi.utf.csv"
+#iconv -f WINDOWS-1252 -t UTF-8//TRANSLIT $CSV_NOMI -o "${TMP}trento_strade_nomi.utf.csv"
 #quoteall, tab delimited char
 csvformat --tabs -U 1 "${TMP}trento_strade_nomi.utf.csv" > $CSV_NOMI
 rm -f "${TMP}trento_strade_nomi.utf.csv"
