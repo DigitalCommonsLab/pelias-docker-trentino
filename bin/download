@@ -4,6 +4,7 @@ TMP="/tmp/trentino/"
 DOWN_CONF="/code/download.conf"
 DOWN_LOGS="/code/download.log"
 
+rm -fr "${TMP}"
 
 if [ ! -f "${DOWN_CONF}" ]; then
 	DOWN_CONF="/code/bin/download.default.conf"
@@ -16,7 +17,7 @@ if [ ! -d "${TMP}" ]; then
 fi
 
 echo "Download files..."
-rm -fr "${TMP}*"
+
 #rm -fr "${TMP}TRENTO_CIVICI_SHP.zip" "${TMP}TRENTO_STRADE_SHP.zip" "${TMP}ROVERETO_CIVICI_SHP.zip" "${TMP}ROVERETO_STRADE_SHP.zip" "${TMP}trento_strade_nomi.csv"
 
 > "${DOWN_LOGS}"
