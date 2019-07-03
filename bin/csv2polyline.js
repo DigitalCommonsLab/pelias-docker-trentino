@@ -4,7 +4,7 @@ const _ = require('lodash');
 
 const csv = require('csv-parse');
 const through = require('through2');
-const polyline = require('polyline');
+const polyline = require('@mapbox/polyline');
 const wkx = require('wkx');
 //	https://github.com/pelias/csv-importer/blob/0f1ffa85730bfe644690db39501f3ec0a0e404d6/lib/streams/recordStream.js
 

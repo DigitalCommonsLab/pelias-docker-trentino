@@ -63,11 +63,11 @@ rm -fr "$CSV_STRADE2.tmp"
 
 #trento strade nomi
 echo "convert to utf8..."
-mv $CSV_NOMI "${TMP}TRENTO_STRADE_NOMI.win.csv"
-iconv -f WINDOWS-1252 -t UTF-8//TRANSLIT "${TMP}TRENTO_STRADE_NOMI.win.csv" -o "${TMP}TRENTO_STRADE_NOMI.utf.csv"
+#mv $CSV_NOMI "${TMP}trento_strade_nomi.win.csv"
+iconv -f WINDOWS-1252 -t UTF-8//TRANSLIT $CSV_NOMI -o "${TMP}trento_strade_nomi.utf.csv"
 #quoteall, tab delimited char
-csvformat --tabs -U 1 "${TMP}TRENTO_STRADE_NOMI.utf.csv" > $CSV_NOMI
-rm -f "${TMP}TRENTO_STRADE_NOMI.win.csv" "${TMP}TRENTO_STRADE_NOMI.utf.csv"
+csvformat --tabs -U 1 "${TMP}trento_strade_nomi.utf.csv" > $CSV_NOMI
+rm -f "${TMP}trento_strade_nomi.utf.csv"
 
 #import geometries
 #spatialite_tool -i -shp $INSHP -d $TMPDB -c UTF-8 -t shp -s 4326 -g geom
@@ -77,7 +77,7 @@ echo -e ".mode csv\n.separator ,\n.import ${CSV_STRADE} trento_strade" | sqlite3
 echo -e ".mode csv\n.separator ,\n.import ${CSV_CIV2} rovereto_civici" | sqlite3 $TMPDB
 echo -e ".mode csv\n.separator ,\n.import ${CSV_STRADE2} rovereto_strade" | sqlite3 $TMPDB
 echo -e ".mode csv\n.separator ,\n.import ${CSV_NOMI} trento_strade_nomi" | sqlite3 $TMPDB
-rm -f $CSV_CIV $CSV_CIV2 $CSV_STRADE $CSV_STRADE2 $CSV_NOMI
+#rm -f $CSV_CIV $CSV_CIV2 $CSV_STRADE $CSV_STRADE2 $CSV_NOMI
 
 SQL1="SELECT CAST(Y AS real) AS lat, CAST(X AS real) AS lon, civico_alf AS number, cap AS zipcode, Appellativo||' '||Prenome||' '||Denominazione AS street FROM trento_civici,trento_strade_nomi WHERE trento_civici.strada = trento_strade_nomi.'Codice via';"
 echo -e ".header on\n.mode csv\n${SQL1}" | spatialite $TMPDB > $CSV_CIV
