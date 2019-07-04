@@ -5,6 +5,8 @@
 
 DATA_DIR=${DATA_DIR:="/data"}
 TMP="${DATA_DIR}/trentino/"
+BIN_DIR=${BIN_DIR:="./bin"}
+
 
 TMPDB="${TMP}db.sqlite"
 DATA="${DATA_DIR}/openaddresses/"
@@ -28,7 +30,8 @@ fi
 
 rm -f $TMPDB "${DATA}.*" "${DATA2}.*"
 
-#TRENTO CIVICI
+echo "TRENTO CIVICI..."
+#
 rm -f $CSV_CIV
 ogr2ogr -f "CSV" -lco GEOMETRY=AS_XY -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_CIV "${TMP}TRENTO_CIVICI_SHP/civici_web.shp"
 ##contains columns X,Y as lon,lat
@@ -36,7 +39,8 @@ mv $CSV_CIV "$CSV_CIV.tmp"
 csvformat -U 1 "$CSV_CIV.tmp" > $CSV_CIV
 rm -fr "$CSV_CIV.tmp"
 
-#TRENTO STRADE GEOMETRIE
+echo "TRENTO STRADE GEOMETRIE..."
+#
 rm -f $CSV_STRADE
 ogr2ogr -f "CSV" -lco GEOMETRY=AS_WKT -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_STRADE "${TMP}TRENTO_STRADE_SHP/grafo_web.shp"
 ##contains column "WKT" as a WKT LineString
@@ -45,18 +49,23 @@ mv $CSV_STRADE "$CSV_STRADE.tmp"
 csvformat -U 1 "$CSV_STRADE.tmp" > $CSV_STRADE
 rm -fr "$CSV_STRADE.tmp"
 
-#ROVERETO CIVICI
+echo  "ROVERETO CIVICI..."
+#
 rm -f $CSV_CIV2
 ogr2ogr -f "CSV" -lco GEOMETRY=AS_WKT -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_CIV2 "${TMP}ROVERETO_CIVICI_SHP/Civici.shp"
 ##contains column "WKT" as a WKT MultiPoint
 mv $CSV_CIV2 "$CSV_CIV2.tmp"
 csvformat -U 1 "$CSV_CIV2.tmp" > "$CSV_CIV2.tmp2"
 #calculate centroid for multipoint
-node ./bin/csvWkt2LatLon.js "$CSV_CIV2.tmp2" > "$CSV_CIV2.centroid.tmp2"
+#
+echo "${BIN_DIR}/csvWkt2LatLon.js..."
+node "${BIN_DIR}/csvWkt2LatLon.js" "$CSV_CIV2.tmp2" > "$CSV_CIV2.centroid.tmp2"
+
 csvformat -U 1 "$CSV_CIV2.centroid.tmp2" > $CSV_CIV2
 rm -fr "$CSV_CIV2.tmp" "$CSV_CIV2.tmp2" "$CSV_CIV2.centroid.tmp2"
 
-#ROVERETO STRADE GEOMETRIE
+echo "ROVERETO STRADE GEOMETRIE..."
+#
 rm -f $CSV_STRADE2
 ogr2ogr -f "CSV" -lco GEOMETRY=AS_WKT -s_srs EPSG:3044 -t_srs EPSG:4326 $CSV_STRADE2 "${TMP}ROVERETO_STRADE_SHP/Strade.shp"
 ##contains column "WKT" as a WKT Polygon
@@ -65,8 +74,8 @@ csvformat -U 1 "$CSV_STRADE2.tmp" > $CSV_STRADE2
 rm -fr "$CSV_STRADE2.tmp"
 #TODO csvWkt2LatLon.js
 
-#trento strade nomi
-#echo "convert to utf8..."
+echo "TRENTO STRADE NOMI..."
+#
 #mv $CSV_NOMI "${TMP}trento_strade_nomi.win.csv"
 #iconv -c -f WINDOWS-1252 -t UTF-8//TRANSLIT $CSV_NOMI -o "${TMP}trento_strade_nomi.utf.csv"
 #quoteall, tab delimited char
@@ -76,6 +85,8 @@ csvformat --tabs -U 1 "${TMP}trento_strade_nomi.utf.csv" > $CSV_NOMI
 #import geometries
 #spatialite_tool -i -shp $INSHP -d $TMPDB -c UTF-8 -t shp -s 4326 -g geom
 
+echo "IMPORT CSV FILES..."
+#
 echo -e ".mode csv\n.separator ,\n.import ${CSV_CIV} trento_civici" | sqlite3 $TMPDB
 echo -e ".mode csv\n.separator ,\n.import ${CSV_STRADE} trento_strade" | sqlite3 $TMPDB
 echo -e ".mode csv\n.separator ,\n.import ${CSV_CIV2} rovereto_civici" | sqlite3 $TMPDB
@@ -92,7 +103,9 @@ SQL2="SELECT WKT, Appellativo||' '||Prenome||' '||Denominazione AS street FROM t
 echo -e ".header on\n.mode csv\n${SQL2}" | spatialite $TMPDB > $CSV_STRADE
 CSV_POLY="${TMP}trento_strade_polyline.csv"
 csvformat -U 1 $CSV_STRADE > $CSV_POLY
-node ./bin/csv2polyline.js $CSV_POLY > "${DATA2}trento_strade_polyline.0sv"
+
+echo "${BIN_DIR}/csv2polyline.js..."
+node "${BIN_DIR}/csv2polyline.js" $CSV_POLY > "${DATA2}trento_strade_polyline.0sv"
 #rm -f $CSV_POLY
 
 SQL3="SELECT CAST(LAT AS real) AS lat, CAST(LON AS real) AS lon, NUMERO_CIV AS number, DUG_ISTAT||' '||TOPONIMO_I AS street FROM rovereto_civici,rovereto_strade WHERE rovereto_civici.CODICE_VIA = rovereto_strade.Cod_strada;"
