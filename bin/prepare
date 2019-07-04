@@ -1,7 +1,8 @@
 #!/bin/bash
+##
+#export LC_ALL=en_US@UTF-8 #cause: line 3: warning: setlocale: LC_ALL: cannot change locale (en_US@UTF-8): No such file or directory
 #
-
-#TMP="/tmp/trentino/"
+export PYTHONIOENCODING=utf-8
 
 DATA_DIR=${DATA_DIR:="/data"}
 TMP="${DATA_DIR}/trentino/"
@@ -29,6 +30,19 @@ if [ ! -d "${DATA2}" ]; then
 fi
 
 rm -f $TMPDB "${DATA}.*" "${DATA2}.*"
+
+echo "TRENTO STRADE NOMI..."
+#
+#mv $CSV_NOMI "${TMP}trento_strade_nomi.win.csv"
+#WRONG CHARSET iconv -c -f WINDOWS-1252 -t UTF-8//TRANSLIT $CSV_NOMI -o "${TMP}trento_strade_nomi.utf.csv"
+#quoteall, tab delimited char
+sed -i -e '2d' "${TMP}TRENTO_STRADE_NOMI.csv"
+iconv -f LATIN1 -t UTF-8//TRANSLIT "${TMP}TRENTO_STRADE_NOMI.csv" -o "${TMP}TRENTO_STRADE_NOMI.utf.csv"
+#csvclean -e "${TMP}TRENTO_STRADE_NOMI.utf.csv" > "${TMP}trento_strade_nomi.clean.csv"
+echo "TRENTO STRADE NOMI... cleaning..."
+csvformat --tabs -U 1 "${TMP}TRENTO_STRADE_NOMI.utf.csv" > "${TMP}TRENTO_STRADE_NOMI.clean.csv"
+grep -v -e '^$' "${TMP}TRENTO_STRADE_NOMI.clean.csv" > $CSV_NOMI
+#rm -f "${TMP}trento_strade_nomi.utf.csv"
 
 echo "TRENTO CIVICI..."
 #
@@ -74,13 +88,6 @@ csvformat -U 1 "$CSV_STRADE2.tmp" > $CSV_STRADE2
 rm -fr "$CSV_STRADE2.tmp"
 #TODO csvWkt2LatLon.js
 
-echo "TRENTO STRADE NOMI..."
-#
-#mv $CSV_NOMI "${TMP}trento_strade_nomi.win.csv"
-#iconv -c -f WINDOWS-1252 -t UTF-8//TRANSLIT $CSV_NOMI -o "${TMP}trento_strade_nomi.utf.csv"
-#quoteall, tab delimited char
-csvformat --tabs -U 1 "${TMP}trento_strade_nomi.utf.csv" > $CSV_NOMI
-#rm -f "${TMP}trento_strade_nomi.utf.csv"
 
 #import geometries
 #spatialite_tool -i -shp $INSHP -d $TMPDB -c UTF-8 -t shp -s 4326 -g geom
