@@ -1,9 +1,10 @@
 #!/bin/bash
 #
 
-TMP="/tmp/trentino/"
-DATA_DIR="/data/"
-#BIN_DIR="/code/bin/"
+#TMP="/tmp/trentino/"
+
+DATA_DIR=${DATA_DIR:="/data"}
+TMP="${DATA_DIR}/trentino/"
 
 TMPDB="${TMP}db.sqlite"
 DATA="${DATA_DIR}openaddresses/"
@@ -15,6 +16,9 @@ CSV_NOMI="${TMP}trento_strade_nomi.csv"
 CSV_CIV2="${TMP}rovereto_civici.csv"
 CSV_STRADE2="${TMP}rovereto_strade.csv"
 
+if [ ! -d "${TMP}" ]; then
+	mkdir -p "${TMP}"
+fi
 if [ ! -d "${DATA}" ]; then
 	mkdir -p "${DATA}"
 fi
@@ -64,10 +68,10 @@ rm -fr "$CSV_STRADE2.tmp"
 #trento strade nomi
 #echo "convert to utf8..."
 #mv $CSV_NOMI "${TMP}trento_strade_nomi.win.csv"
-#iconv -f WINDOWS-1252 -t UTF-8//TRANSLIT $CSV_NOMI -o "${TMP}trento_strade_nomi.utf.csv"
+#iconv -c -f WINDOWS-1252 -t UTF-8//TRANSLIT $CSV_NOMI -o "${TMP}trento_strade_nomi.utf.csv"
 #quoteall, tab delimited char
 csvformat --tabs -U 1 "${TMP}trento_strade_nomi.utf.csv" > $CSV_NOMI
-rm -f "${TMP}trento_strade_nomi.utf.csv"
+#rm -f "${TMP}trento_strade_nomi.utf.csv"
 
 #import geometries
 #spatialite_tool -i -shp $INSHP -d $TMPDB -c UTF-8 -t shp -s 4326 -g geom

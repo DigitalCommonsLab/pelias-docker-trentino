@@ -1,10 +1,12 @@
 #!/bin/bash
 
-TMP="/tmp/trentino/"
+DATA_DIR=${DATA_DIR:="/data"}
+TMP="${DATA_DIR}/trentino/"
+
 DOWN_CONF="/code/download.conf"
 DOWN_LOGS="/code/download.log"
 
-rm -fr "${TMP}"
+rm -fr "${TMP}*"
 
 if [ ! -f "${DOWN_CONF}" ]; then
 	DOWN_CONF="/code/bin/download.default.conf"
@@ -21,7 +23,7 @@ echo "Download files..."
 #rm -fr "${TMP}TRENTO_CIVICI_SHP.zip" "${TMP}TRENTO_STRADE_SHP.zip" "${TMP}ROVERETO_CIVICI_SHP.zip" "${TMP}ROVERETO_STRADE_SHP.zip" "${TMP}trento_strade_nomi.csv"
 
 > "${DOWN_LOGS}"
-aria2c -i "${DOWN_CONF}" -d $TMP -l "${DOWN_LOGS}" -x 8 --auto-file-renaming=false -c
+aria2c -i "${DOWN_CONF}" -d "${TMP}" -l "${DOWN_LOGS}" -x 8 --auto-file-renaming=false -c
 
 #ls -1 $TMP
 
@@ -32,7 +34,7 @@ unzip -d "${TMP}TRENTO_STRADE_SHP" "${TMP}TRENTO_STRADE_SHP.zip"
 #PATCH dati corrotti
 #sed -i -e 's/\xe0//g' "${TMP}TRENTO_STRADE_NOMI.csv" 
 #sed -i -e 's/\x0160//g' "${TMP}TRENTO_STRADE_NOMI.csv" 
-echo "convert to utf8..."
+echo "convert to utf8... ${TMP}TRENTO_STRADE_NOMI.csv"
 #sed -i 's/[\d128-\d255]//g' "${TMP}TRENTO_STRADE_NOMI.csv"
 #sed -i -e 's/\x1a//g' "${TMP}TRENTO_STRADE_NOMI.csv"
 #sed -i -e 's/\u0160//g' "${TMP}TRENTO_STRADE_NOMI.csv"
@@ -40,10 +42,10 @@ echo "convert to utf8..."
 #tr -dc '\0-\177' < "${TMP}TRENTO_STRADE_NOMI.csv" > "${TMP}trento_strade_nomi.csv"
 #mv "${TMP}TRENTO_STRADE_NOMI.csv" "${TMP}trento_strade_nomi.csv"
 
-#REMOVE ROW 2
+#PATH to REMOVE malformed ROW 2
 sed -i -e '2d' "${TMP}TRENTO_STRADE_NOMI.csv"
 
-iconv -f WINDOWS-1252 -t UTF-8//TRANSLIT "${TMP}TRENTO_STRADE_NOMI.csv" -o "${TMP}trento_strade_nomi.utf.csv"
+iconv -c -f WINDOWS-1252 -t UTF-8//TRANSLIT "${TMP}TRENTO_STRADE_NOMI.csv" -o "${TMP}trento_strade_nomi.utf.csv"
 
 unzip -d "${TMP}ROVERETO_CIVICI_SHP" "${TMP}ROVERETO_CIVICI_SHP.zip"
 unzip -d "${TMP}ROVERETO_STRADE_SHP" "${TMP}ROVERETO_STRADE_SHP.zip"
