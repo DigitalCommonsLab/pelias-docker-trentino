@@ -8,7 +8,7 @@ DATA_DIR=${DATA_DIR:="/data"}
 TMP="${DATA_DIR}/trentino/"
 
 DOWN_CONF="/code/download.conf"
-DOWN_LOGS="/code/download.log"
+DOWN_LOGS="${TMP}download.log"
 
 rm -fr "${TMP}"
 
