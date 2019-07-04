@@ -15,12 +15,8 @@ Scripts e Immagini Docker per l'elaborazione di opendata del Trentino da importa
 
 
 # Utilizzo via docker
-Da qui https://github.com/DigitalCommonsLab/docker
-```bash
-pelias download trentino
-pelias prepare trentino
-pelias import oa
-```
+https://github.com/DigitalCommonsLab/docker/blob/master/projects/italy-trentino/README.md
+
 
 # Utilizzo via bash
 
