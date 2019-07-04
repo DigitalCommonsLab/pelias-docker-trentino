@@ -4,7 +4,7 @@
 #
 export PYTHONIOENCODING=utf-8
 
-DATA_DIR=${DATA_DIR:="/data"}
+DATA_DIR=${DATA_DIR:="/data/pelias_data"}
 TMP="${DATA_DIR}/trentino/"
 
 DOWN_CONF="/code/download.conf"
