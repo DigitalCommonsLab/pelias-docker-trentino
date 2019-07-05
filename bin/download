@@ -4,20 +4,18 @@
 #
 export PYTHONIOENCODING=utf-8
 
-DATA_DIR=${DATA_DIR:="/data/pelias_data"}
+DATA_DIR="/data"
 TMP="${DATA_DIR}/trentino/"
 
-DOWN_CONF="/code/download.conf"
+#DOWN_CONF="/code/download.conf"
+DOWN_CONF="/code/bin/download.default.conf"
 DOWN_LOGS="${TMP}download.log"
 
 rm -fr "${TMP}"
 
-if [ ! -f "${DOWN_CONF}" ]; then
-	DOWN_CONF="/code/bin/download.default.conf"
-fi
-if [ ! -f "${DOWN_LOGS}" ]; then
-	DOWN_LOGS="/code/download.log"
-fi
+# if [ ! -f "${DOWN_CONF}" ]; then
+# 	DOWN_CONF="/code/bin/download.default.conf"
+# fi
 if [ ! -d "${TMP}" ]; then
 	mkdir -p "${TMP}"
 fi
@@ -27,7 +25,7 @@ echo "Download files..."
 #rm -fr "${TMP}TRENTO_CIVICI_SHP.zip" "${TMP}TRENTO_STRADE_SHP.zip" "${TMP}ROVERETO_CIVICI_SHP.zip" "${TMP}ROVERETO_STRADE_SHP.zip" "${TMP}trento_strade_nomi.csv"
 
 > "${DOWN_LOGS}"
-aria2c -i "${DOWN_CONF}" -d "${TMP}" -l "${DOWN_LOGS}" -x 8 --allow-overwrite=true --auto-file-renaming=false -c
+aria2c -c -i "${DOWN_CONF}" -d "${TMP}" -l "${DOWN_LOGS}" -x 8 --allow-overwrite=true --auto-file-renaming=false
 
 #ls -1 $TMP
 

@@ -24,7 +24,8 @@ RUN npm install --prefix ${WORKDIR}/bin/
 
 RUN useradd -ms /bin/bash pelias
 RUN mkdir /data
-RUN chown pelias:pelias /data /code -R
+RUN chown pelias:pelias /data -R
+RUN chown pelias:pelias /code -R
 
 USER pelias
 
