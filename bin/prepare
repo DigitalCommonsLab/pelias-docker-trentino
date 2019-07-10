@@ -103,13 +103,13 @@ echo -e ".mode csv\n.separator ,\n.import ${CSV_NOMI} trento_strade_nomi" | sqli
 
 SQL1="SELECT CAST(Y AS real) AS lat, CAST(X AS real) AS lon, civico_alf AS number, cap AS zipcode, Appellativo||' '||Prenome||' '||Denominazione AS street FROM trento_civici,trento_strade_nomi WHERE trento_civici.strada = trento_strade_nomi.'Codice via';"
 echo -e ".header on\n.mode csv\n${SQL1}" | spatialite $TMPDB > $CSV_CIV
-csvformat -U 1 $CSV_CIV > "${DATA}trento_civici.csv"
+csvformat -U 0 $CSV_CIV > "${DATA}trento_civici.csv"
 rm -f $CSV_CIV
 
 SQL2="SELECT WKT, Appellativo||' '||Prenome||' '||Denominazione AS street FROM trento_strade,trento_strade_nomi WHERE trento_strade.codice = trento_strade_nomi.'Codice via';"
 echo -e ".header on\n.mode csv\n${SQL2}" | spatialite $TMPDB > $CSV_STRADE
 CSV_POLY="${TMP}trento_strade_polyline.csv"
-csvformat -U 1 $CSV_STRADE > $CSV_POLY
+csvformat -U 0 $CSV_STRADE > $CSV_POLY
 
 echo "${BIN_DIR}/csv2polyline.js..."
 node "${BIN_DIR}/csv2polyline.js" $CSV_POLY > "${DATA2}trento_strade_polyline.0sv"
@@ -117,7 +117,7 @@ node "${BIN_DIR}/csv2polyline.js" $CSV_POLY > "${DATA2}trento_strade_polyline.0s
 
 SQL3="SELECT CAST(LAT AS real) AS lat, CAST(LON AS real) AS lon, NUMERO_CIV AS number, DUG_ISTAT||' '||TOPONIMO_I AS street FROM rovereto_civici,rovereto_strade WHERE rovereto_civici.CODICE_VIA = rovereto_strade.Cod_strada;"
 echo -e ".header on\n.mode csv\n${SQL3}" | spatialite $TMPDB > $CSV_CIV2
-csvformat -U 1 $CSV_CIV2 > "${DATA}rovereto_civici.csv"
+csvformat -U 0 $CSV_CIV2 > "${DATA}rovereto_civici.csv"
 rm -f $CSV_CIV2
 
 #spatialite_tool -e -d $1 -t shape -g geom -k -type LINESTRING
