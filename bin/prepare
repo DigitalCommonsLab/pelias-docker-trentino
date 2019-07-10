@@ -92,7 +92,7 @@ rm -fr "$CSV_STRADE2.tmp"
 #import geometries
 #spatialite_tool -i -shp $INSHP -d $TMPDB -c UTF-8 -t shp -s 4326 -g geom
 
-echo "IMPORT CSV FILES..."
+echo "JOIN GEOMETRIES in CSV..."
 #
 echo -e ".mode csv\n.separator ,\n.import ${CSV_CIV} trento_civici" | sqlite3 $TMPDB
 echo -e ".mode csv\n.separator ,\n.import ${CSV_STRADE} trento_strade" | sqlite3 $TMPDB
@@ -101,7 +101,7 @@ echo -e ".mode csv\n.separator ,\n.import ${CSV_STRADE2} rovereto_strade" | sqli
 echo -e ".mode csv\n.separator ,\n.import ${CSV_NOMI} trento_strade_nomi" | sqlite3 $TMPDB
 #rm -f $CSV_CIV $CSV_CIV2 $CSV_STRADE $CSV_STRADE2 $CSV_NOMI
 
-SQL1="SELECT CAST(Y AS real) AS lat, CAST(X AS real) AS lon, civico_alf AS number, cap AS zipcode, Appellativo||' '||Prenome||' '||Denominazione AS street FROM trento_civici,trento_strade_nomi WHERE trento_civici.strada = trento_strade_nomi.'Codice via';"
+SQL1="SELECT CAST(Y AS real) AS LAT, CAST(X AS real) AS LON, civico_alf AS NUMBER, cap AS ZIPCODE, Appellativo||' '||Prenome||' '||Denominazione AS STREET FROM trento_civici,trento_strade_nomi WHERE trento_civici.strada = trento_strade_nomi.'Codice via';"
 echo -e ".header on\n.mode csv\n${SQL1}" | spatialite $TMPDB > $CSV_CIV
 csvformat -U 0 $CSV_CIV > "${DATA}trento_civici.csv"
 rm -f $CSV_CIV
@@ -115,7 +115,7 @@ echo "${BIN_DIR}/csv2polyline.js..."
 node "${BIN_DIR}/csv2polyline.js" $CSV_POLY > "${DATA2}trento_strade_polyline.0sv"
 #rm -f $CSV_POLY
 
-SQL3="SELECT CAST(LAT AS real) AS lat, CAST(LON AS real) AS lon, NUMERO_CIV AS number, DUG_ISTAT||' '||TOPONIMO_I AS street FROM rovereto_civici,rovereto_strade WHERE rovereto_civici.CODICE_VIA = rovereto_strade.Cod_strada;"
+SQL3="SELECT CAST(LAT AS real) AS LAT, CAST(LON AS real) AS LON, NUMERO_CIV AS NUMBER, DUG_ISTAT||' '||TOPONIMO_I AS STREET FROM rovereto_civici,rovereto_strade WHERE rovereto_civici.CODICE_VIA = rovereto_strade.Cod_strada;"
 echo -e ".header on\n.mode csv\n${SQL3}" | spatialite $TMPDB > $CSV_CIV2
 csvformat -U 0 $CSV_CIV2 > "${DATA}rovereto_civici.csv"
 rm -f $CSV_CIV2
@@ -127,4 +127,4 @@ rm -f $CSV_CIV2
 #csvjoin -c "strada,Codice_via" trento_civici.csv trento_strade.csv > join.csv
 #csvcut -c "X,Y,civico_alf,cap,Appellativo,Prenome,Denominazione" join.csv > cut.csv
 #rename columns in pelias openaddresses format
-#non serve cat cut.csv | csvsql --query "SELECT X AS lon, Y AS lat, civico_alf AS number, cap AS zipcode, Appellativo||' '||Prenome||' '||Denominazione AS street FROM stdin" > out.csv
+#non serve cat cut.csv | csvsql --query "SELECT X AS lon, Y AS lat, civico_alf AS number, cap AS ZIPCODE, Appellativo||' '||Prenome||' '||Denominazione AS street FROM stdin" > out.csv
