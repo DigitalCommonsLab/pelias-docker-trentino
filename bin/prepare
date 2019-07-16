@@ -93,12 +93,13 @@ rm -f $CSV_CIV3
 ogr2ogr -f "CSV" -lco GEOMETRY=AS_WKT -s_srs EPSG:32632 -t_srs EPSG:4326 $CSV_CIV3 "${TMP}STORO_CIVICI_SHP/civici_Storo.shp"
 ##contains column "WKT" as a WKT MultiPoint
 mv $CSV_CIV3 "$CSV_CIV3.tmp"
-csvformat -U 1 "$CSV_CIV3.tmp" > "$CSV_CIV3.tmp2"
+iconv -f LATIN1 -t UTF-8//TRANSLIT "$CSV_CIV3.tmp" -o "$CSV_CIV3.utf"
+csvformat -U 1 "$CSV_CIV3.utf" > "$CSV_CIV3.tmp2"
 #calculate centroid for multipoint
 echo "${BIN_DIR}/csvWkt2LatLon.js..."
 node "${BIN_DIR}/csvWkt2LatLon.js" "$CSV_CIV3.tmp2" > "$CSV_CIV3.centroid.tmp2"
-csvformat -U 1 "$CSV_CIV3.centroid.tmp2" > $CSV_CIV3
-rm -fr "$CSV_CIV3.tmp" "$CSV_CIV3.tmp2" "$CSV_CIV3.centroid.tmp2"
+csvformat -U 0 "$CSV_CIV3.centroid.tmp2" > $CSV_CIV3
+#rm -fr "$CSV_CIV3.tmp" "$CSV_CIV3.tmp2" "$CSV_CIV3.centroid.tmp2"
 
 
 #import geometries
@@ -133,7 +134,7 @@ echo -e ".header on\n.mode csv\n${SQL3}" | spatialite $TMPDB > $CSV_CIV2
 csvformat -U 0 $CSV_CIV2 > "${DATA}rovereto_civici.csv"
 rm -f $CSV_CIV2
 
-SQL4="SELECT CAST(LAT AS real) AS LAT, CAST(LON AS real) AS LON, CIVICO AS NUMBER, VIA AS STREET FROM storo_civici"
+SQL4="SELECT CAST(LAT AS real) AS LAT, CAST(LON AS real) AS LON, CIVICO AS NUMBER, VIA AS STREET FROM storo_civici;"
 echo -e ".header on\n.mode csv\n${SQL4}" | spatialite $TMPDB > $CSV_CIV3
 csvformat -U 0 $CSV_CIV3 > "${DATA}storo_civici.csv"
 rm -f $CSV_CIV3
