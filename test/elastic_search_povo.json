@@ -1,0 +1,796 @@
+{
+  "took": 10,
+  "timed_out": false,
+  "_shards": {
+    "total": 2,
+    "successful": 2,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 2567,
+    "max_score": 30.656849,
+    "hits": [
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:3515",
+        "_score": 30.656849,
+        "_source": {
+          "center_point": {
+            "lon": 11.046418,
+            "lat": 45.914455
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Pomarolo"
+            ],
+            "locality_id": [
+              "101836361"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Pomarolo"
+            ],
+            "localadmin_id": [
+              "404473609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "97/A Viale Trento"
+          },
+          "address_parts": {
+            "number": "97/A",
+            "street": "Viale Trento"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:3515",
+          "layer": "address"
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:3441",
+        "_score": 30.656849,
+        "_source": {
+          "center_point": {
+            "lon": 11.045643,
+            "lat": 45.914561
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Pomarolo"
+            ],
+            "locality_id": [
+              "101836361"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Pomarolo"
+            ],
+            "localadmin_id": [
+              "404473609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "25 Via Stroperi"
+          },
+          "address_parts": {
+            "number": "25",
+            "street": "Via Stroperi"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:3441",
+          "layer": "address"
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:3429",
+        "_score": 30.656849,
+        "_source": {
+          "center_point": {
+            "lon": 11.045686,
+            "lat": 45.914597
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Pomarolo"
+            ],
+            "locality_id": [
+              "101836361"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Pomarolo"
+            ],
+            "localadmin_id": [
+              "404473609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "29 Via Stroperi"
+          },
+          "address_parts": {
+            "number": "29",
+            "street": "Via Stroperi"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:3429",
+          "layer": "address"
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:8525",
+        "_score": 3.5868459,
+        "_source": {
+          "center_point": {
+            "lon": 11.045395,
+            "lat": 45.88656
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Rovereto"
+            ],
+            "locality_id": [
+              "101836353"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Rovereto"
+            ],
+            "localadmin_id": [
+              "404471609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "11 Piazza Del Podesta'"
+          },
+          "address_parts": {
+            "number": "11",
+            "street": "Piazza Del Podesta'"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:8525",
+          "layer": "address"
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:8496",
+        "_score": 3.5868459,
+        "_source": {
+          "center_point": {
+            "lon": 11.045832,
+            "lat": 45.88604
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Rovereto"
+            ],
+            "locality_id": [
+              "101836353"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Rovereto"
+            ],
+            "localadmin_id": [
+              "404471609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "1 Piazza Del Podesta'"
+          },
+          "address_parts": {
+            "number": "1",
+            "street": "Piazza Del Podesta'"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:8496",
+          "layer": "address"
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:8923",
+        "_score": 3.5868459,
+        "_source": {
+          "center_point": {
+            "lon": 11.045487,
+            "lat": 45.886771
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Rovereto"
+            ],
+            "locality_id": [
+              "101836353"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Rovereto"
+            ],
+            "localadmin_id": [
+              "404471609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "14 Piazza Del Podesta'"
+          },
+          "address_parts": {
+            "number": "14",
+            "street": "Piazza Del Podesta'"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:8923",
+          "layer": "address"
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:8951",
+        "_score": 3.5868459,
+        "_source": {
+          "center_point": {
+            "lon": 11.045601,
+            "lat": 45.886321
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Rovereto"
+            ],
+            "locality_id": [
+              "101836353"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Rovereto"
+            ],
+            "localadmin_id": [
+              "404471609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "9 Piazza Del Podesta'"
+          },
+          "address_parts": {
+            "number": "9",
+            "street": "Piazza Del Podesta'"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:8951",
+          "layer": "address"
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:8971",
+        "_score": 3.5868459,
+        "_source": {
+          "center_point": {
+            "lon": 11.045671,
+            "lat": 45.886239
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Rovereto"
+            ],
+            "locality_id": [
+              "101836353"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Rovereto"
+            ],
+            "localadmin_id": [
+              "404471609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "7 Piazza Del Podesta'"
+          },
+          "address_parts": {
+            "number": "7",
+            "street": "Piazza Del Podesta'"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:8971",
+          "layer": "address"
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:8961",
+        "_score": 3.5868459,
+        "_source": {
+          "center_point": {
+            "lon": 11.045653,
+            "lat": 45.886262
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Rovereto"
+            ],
+            "locality_id": [
+              "101836353"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Rovereto"
+            ],
+            "localadmin_id": [
+              "404471609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "8 Piazza Del Podesta'"
+          },
+          "address_parts": {
+            "number": "8",
+            "street": "Piazza Del Podesta'"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:8961",
+          "layer": "address"
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "address",
+        "_id": "rovereto_civici:9024",
+        "_score": 3.5868459,
+        "_source": {
+          "center_point": {
+            "lon": 11.045362,
+            "lat": 45.886766
+          },
+          "parent": {
+            "continent": [
+              "Europe"
+            ],
+            "continent_id": [
+              "102191581"
+            ],
+            "continent_a": [
+              null
+            ],
+            "country": [
+              "Italy"
+            ],
+            "country_id": [
+              "85633253"
+            ],
+            "country_a": [
+              "ITA"
+            ],
+            "macroregion": [
+              "Trentino-Alto Adige/South Tyrol"
+            ],
+            "macroregion_id": [
+              "404227499"
+            ],
+            "macroregion_a": [
+              null
+            ],
+            "region": [
+              "Trento"
+            ],
+            "region_id": [
+              "85685277"
+            ],
+            "region_a": [
+              "TN"
+            ],
+            "locality": [
+              "Rovereto"
+            ],
+            "locality_id": [
+              "101836353"
+            ],
+            "locality_a": [
+              null
+            ],
+            "localadmin": [
+              "Rovereto"
+            ],
+            "localadmin_id": [
+              "404471609"
+            ],
+            "localadmin_a": [
+              null
+            ]
+          },
+          "name": {
+            "default": "13 Piazza Del Podesta'"
+          },
+          "address_parts": {
+            "number": "13",
+            "street": "Piazza Del Podesta'"
+          },
+          "source": "openaddresses",
+          "source_id": "rovereto_civici:9024",
+          "layer": "address"
+        }
+      }
+    ]
+  }
+}
