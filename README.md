@@ -64,7 +64,6 @@ file che possono essere eliminati per liberare spazio su disco, dopo i comandi d
 
 ```bash
 rm -rf /data/openaddresses
-rm -rf /data/tiger
 rm -rf /data/openstreetmap
 rm -rf /data/polylines
 cd /data/interpolation
