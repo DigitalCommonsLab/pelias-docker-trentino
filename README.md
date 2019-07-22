@@ -35,22 +35,22 @@ https://github.com/DigitalCommonsLab/docker/blob/master/projects/italy-trentino/
 **setup.sh**
 install tool indispensabili per download e trasformazione dati
 
-**download.conf**
+**./bin/download.default.conf**
 lista file remoti da scaricare, spostare questo file nella repo /docker/projects/italy-trentino
 
-**download.sh**
+**./bin/download**
 scarica tutte le datasource ed estrae file compressi
 
-**prepare.sh**
+**./bin/prepare**
 associa il nome della strada ad ogni civico con il *codice strada* prendendolo dal file csv
 trasformazione e conversione dei dati scaricati in formato importabile in pelias
 
 # Altri Scripts
 
-**csvWkt2LatLon.js.js**
+**./bin/csvWkt2LatLon.js**
 converte file csv con colonna geometria in format WKT in csv con colonne lat,lon (da centroide o simile)
 
-**csv2polyline.js**
+**./bin/csv2polyline.js**
 converte i file csv in formato .polyline importabile come road network in Pelias **.0sv**
 
 # Utility 
@@ -59,6 +59,19 @@ converte i file csv in formato .polyline importabile come road network in Pelias
   plugin qgis per scaricare parti di openstreetmap per debug:
 * https://wiki.openstreetmap.org/wiki/Osmconvert
 
+# File temporanei
+file che possono essere eliminati per liberare spazio su disco, dopo i comandi di import
+
+```bash
+rm -rf /data/openaddresses
+rm -rf /data/tiger
+rm -rf /data/openstreetmap
+rm -rf /data/polylines
+cd /data/interpolation
+rm -rf -- !("street.db"|"address.db")
+cd /data/placeholder
+rm -rf -- !("store.sqlite3")
+```
 
 ![Image](images/test_osm_comune.png)
 
