@@ -61,3 +61,26 @@ converte i file csv in formato .polyline importabile come road network in Pelias
 
 
 ![Image](images/test_osm_comune.png)
+
+
+# Tests
+
+Query elasticsearch instance:
+```bash
+curl -X GET "localhost:9200/_search" -H 'Content-Type: application/json' -d'
+{
+    "query": {
+        "simple_query_string" : {
+            "query" : "povo"
+        }
+    }
+}
+'
+```
+[result](test/elastic_search_povo.json)
+
+Query pelias api:
+```bash
+curl -X GET "http://peliasvm:4000/v1/search?text=povo" -H 'Content-Type: application/json'
+```
+[result](test/pelias_api_search_povo.json)

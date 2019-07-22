@@ -1,0 +1,108 @@
+{
+  "geocoding": {
+    "version": "0.2",
+    "attribution": "http://peliasvm:4000/attribution",
+    "query": {
+      "text": "povo",
+      "size": 10,
+      "layers": [
+        "venue",
+        "street",
+        "country",
+        "macroregion",
+        "region",
+        "county",
+        "localadmin",
+        "locality",
+        "borough",
+        "neighbourhood",
+        "continent",
+        "empire",
+        "dependency",
+        "macrocounty",
+        "macrohood",
+        "microhood",
+        "disputed",
+        "postalcode",
+        "ocean",
+        "marinearea",
+        "stops"
+      ],
+      "private": false,
+      "focus.point.lat": 46.063442,
+      "focus.point.lon": 11.156744,
+      "lang": {
+        "name": "English",
+        "iso6391": "en",
+        "iso6393": "eng",
+        "defaulted": true
+      },
+      "querySize": 20,
+      "parser": "libpostal",
+      "parsed_text": {
+        "city": "povo"
+      }
+    },
+    "warnings": [
+      "performance optimization: excluding 'address' layer"
+    ],
+    "engine": {
+      "name": "Pelias",
+      "author": "Mapzen",
+      "version": "1.0"
+    },
+    "timestamp": 1563804277686
+  },
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.155266,
+          46.064822
+        ]
+      },
+      "properties": {
+        "id": "101793279",
+        "gid": "whosonfirst:locality:101793279",
+        "layer": "locality",
+        "source": "whosonfirst",
+        "source_id": "101793279",
+        "name": "Povo",
+        "confidence": 1,
+        "match_type": "exact",
+        "distance": 0.191,
+        "accuracy": "centroid",
+        "country": "Italy",
+        "country_gid": "whosonfirst:country:85633253",
+        "country_a": "ITA",
+        "macroregion": "Trentino-Alto Adige/South Tyrol",
+        "macroregion_gid": "whosonfirst:macroregion:404227499",
+        "region": "Trento",
+        "region_gid": "whosonfirst:region:85685277",
+        "region_a": "TN",
+        "localadmin": "Trento",
+        "localadmin_gid": "whosonfirst:localadmin:404471703",
+        "locality": "Povo",
+        "locality_gid": "whosonfirst:locality:101793279",
+        "continent": "Europe",
+        "continent_gid": "whosonfirst:continent:102191581",
+        "label": "Povo, Italy"
+      },
+      "bbox": [
+        11.1488202868,
+        46.054941427,
+        11.1683353293,
+        46.0755582152
+      ]
+    }
+  ],
+  "bbox": [
+    11.1488202868,
+    46.054941427,
+    11.1683353293,
+    46.0755582152
+  ]
+}
