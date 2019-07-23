@@ -17,6 +17,8 @@ Scripts e Immagini Docker per l'elaborazione di opendata del Trentino da importa
 # Utilizzo via docker
 https://github.com/DigitalCommonsLab/docker/blob/master/projects/italy-trentino/README.md
 
+# API endpoints
+https://github.com/pelias/documentation/#endpoint-descriptions
 
 # Utilizzo via bash
 
