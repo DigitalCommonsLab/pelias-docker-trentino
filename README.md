@@ -5,11 +5,11 @@ Scripts e Immagini Docker per l'elaborazione di opendata del Trentino da importa
 
 # Dati
 
-* Civici comune di Trento
+* Numeri civici comune di Trento
 * Nomi di vie del comune di Trento
-* Civici comune di Rovereto
+* Numeri civici comune di Rovereto
 * Nomi di vie del comune di Rovereto
-* Civici OpenStreetMap
+* Numeri civici OpenStreetMap
 * Rete stradale e nomi di vie OpenStreetMap
 * Punti di interesse OpenStreetMap
 
