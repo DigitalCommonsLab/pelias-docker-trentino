@@ -6,12 +6,12 @@ Scripts e Immagini Docker per l'elaborazione di opendata del Trentino da importa
 # Dati
 
 * Civici comune di Trento
-* Rete stradale e nomi di vie del comune di Trento
+* Nomi di vie del comune di Trento
 * Civici comune di Rovereto
-* Rete stradale comune di Rovereto
+* Nomi di vie del comune di Rovereto
 * Civici OpenStreetMap
 * Rete stradale e nomi di vie OpenStreetMap
-* PDI OpenStreetMap
+* Punti di interesse OpenStreetMap
 
 
 # Utilizzo via docker
@@ -21,6 +21,8 @@ https://github.com/DigitalCommonsLab/docker/blob/master/projects/italy-trentino/
 https://github.com/pelias/documentation/#endpoint-descriptions
 
 # Utilizzo via bash
+
+(da utilizzare solo per debug)
 
 ```bash
 ./setup.sh
