@@ -125,9 +125,13 @@ echo -e ".header on\n.mode csv\n${SQL2}" | spatialite $TMPDB > $CSV_STRADE
 CSV_POLY="${TMP}trento_strade_polyline.csv"
 csvformat -U 0 $CSV_STRADE > $CSV_POLY
 
-echo "${BIN_DIR}/csv2polyline.js..."
-node "${BIN_DIR}/csv2polyline.js" $CSV_POLY > "${DATA2}trento_strade_polyline.0sv"
-#rm -f $CSV_POLY
+if [ "${CSV_TO_POLYLINE}" = "True" ]; then
+	# csv2polyline CREATE ROAD NETWORK FROM CSV
+
+	echo "${BIN_DIR}/csv2polyline.js... $CSV_POLY"
+	node "${BIN_DIR}/csv2polyline.js" $CSV_POLY > "${DATA2}trento_strade_polyline.0sv"
+	#rm -f $CSV_POLY
+fi
 
 SQL3="SELECT CAST(LAT AS real) AS LAT, CAST(LON AS real) AS LON, NUMERO_CIV AS NUMBER, DUG_ISTAT||' '||TOPONIMO_I AS STREET FROM rovereto_civici,rovereto_strade WHERE rovereto_civici.CODICE_VIA = rovereto_strade.Cod_strada;"
 echo -e ".header on\n.mode csv\n${SQL3}" | spatialite $TMPDB > $CSV_CIV2

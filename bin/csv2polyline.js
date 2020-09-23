@@ -16,14 +16,18 @@ function processRecord(row) {
 
     //let geom = row[ columnGeom ].match(/LINESTRING \((.*)\)/);
     let wkt = row[ columnGeom ];
+    
+    if(!_.isString(wkt)){
+      console.warn("EMPTY GEOMETRY...", row)
+      return null;
+    }
+
     let geom = wkx.Geometry.parse(wkt);
     let geoj = geom.toGeoJSON();
     let coords = geoj.coordinates;
     
     let enc = polyline.encode(coords),
     	name = row[ columnName ];
-
-    //console.log('ROW COORDS',coords)
 
     return enc+"\0"+name+"\n";
 }
@@ -40,13 +44,16 @@ function createRecordStream( filePath ) {
 
   let uid = 0;
   var docStream = through.obj(
-    function write( record, enc, next ){
+    function write( record, enc, next ) {
+
       const recDoc = processRecord(record);
       uid++;
 
       if (recDoc) {
         this.push( recDoc );
       }
+      else
+
 
       next();
     }

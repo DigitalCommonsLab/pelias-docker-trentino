@@ -19,7 +19,7 @@ WORKDIR ${WORKDIR}
 COPY ./bin ${WORKDIR}/bin
 COPY ./package.json ${WORKDIR}/bin/
 
-RUN tree
+#RUN tree
 RUN npm install --prefix ${WORKDIR}/bin/
 
 RUN useradd -ms /bin/bash pelias
